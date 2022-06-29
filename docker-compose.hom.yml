@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: .
+      args:
+        APP_NAME: authorization-v2-homolog
+        NR_KEY: 876fa56b8697338f4795865adaca2f497ef8NRAL
+    container_name: authorization-service-bpp
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=production
+      - SERVICE_NAME=authorization
+      - PORT=3000
+      - NEW_RELIC_APP_NAME=authorization-v2-homolog
+      - AUTH0_DOMAIN=bpp-hom.us.auth0.com
+      - AUTH0_JWKS_URI=https://bpp-hom.us.auth0.com/.well-known/jwks.json
+      - AUTH0_CLIENT_ID_PASSWORD_CRED=b9Y5fNvkX1CkhKjaLe2nSo2bZNwZR5RW
+      - AUTH0_CLIENT_SECRET_PASSWORD_CRED=hzrxLzgRu-0-j5u6wRAdcGJue3ZMLndQDKqAEoyoquxd9zT_va8kvGAlyx-eeQxE
+      - AUTH0_CLIENT_ID_CLIENT_CRED=nYzzOTxEr9JumkmpnHHCUKxXqP6yDnBj
+      - AUTH0_CLIENT_SECRET_CLIENT_CRED=ofhP2EouxFcdTEehLlYGYV3IF1VnS7-S33MDY5o_cJPg44HmGjKaVgwLdTjx1MhF
+      - AUTH0_CONNECTION_NAME_USER=legacy-dynamodb
+      - AUTH0_CONNECTION_NAME_CLIENT=core-database
+      - FENIX_OTP_URL=https://svleo46ul2.execute-api.us-east-1.amazonaws.com/v1/tokens/otp
+      - TOKEN_CUSTOM_CLAIM=https://core.hom-bpp.com.br
+      - CORE_SMS_INTEGRATOR_URL=http://172.31.59.88:7708/infobipintegrator/infobipintegrator/sms
+      - JWT_SECRET=139f86aef918e4b93f9134848944c28f
+    restart: always
+
+    volumes:
+      - .:/home/node/app
