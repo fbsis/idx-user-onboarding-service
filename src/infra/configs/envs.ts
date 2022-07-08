@@ -1,27 +1,25 @@
 import { DatabaseSettings } from '../services/DatabaseService'
-import { ValidateSettings } from '../services/IdWallService'
+import { PartnerSettings } from '../services/PartnerService'
 
 export class EnvAdapter {
   static readonly server = {
     stage: process.env.NODE_ENV ?? 'development',
-    name: process.env.SERVICE_NAME ?? 'authorization'
+    name: process.env.SERVICE_NAME ?? 'idx-user-onboarding-service'
   }
 
   static readonly http = {
-    listenPort: Number(process.env.PORT ?? 3002)
+    listenPort: Number(process.env.PORT ?? 3003)
   }
 
   static readonly databaseCredencials: DatabaseSettings = {
     authentication: {
-      url: process.env.MONGO_CREDENCIAL ?? 'mongodb://localhost/xchange-document-validation'
+      url: process.env.MONGO_CREDENCIAL ?? 'mongodb://localhost/xchange-user-onboarding'
     }
   }
 
-  static readonly validateCredencials: ValidateSettings = {
-    authentication: {
-      token: process.env.MONGO_CREDENCIAL ?? 'foobar',
-      url: process.env.MONGO_CREDENCIAL ?? 'http://localhost:3002/fake-validate'
-    }
+  static readonly partnerConfig: PartnerSettings = {
+    url: process.env.MONGO_CREDENCIAL ?? 'http://localhost:3001/v1/'
+
   }
 
   static readonly tokenSecret: string = process.env.JWT_SECRET ?? 'secret'

@@ -1,1 +1,1 @@
-export * from './ValidationPersonInteractor'
+export * from './RegisterPersonInteractor'

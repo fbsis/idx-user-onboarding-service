@@ -1,5 +1,6 @@
 import { Person } from '../entities'
+import { DocumentId } from '../valueObjects'
 
 export interface PersonQueryRepository {
-  get: (person: Person) => Promise<Person | null>
+  getByDocumentId: (person: DocumentId) => Promise<Person | null>
 }

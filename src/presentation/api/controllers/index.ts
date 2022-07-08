@@ -1,1 +1,1 @@
-export * from './ValidationRegisterController'
+export * from './RegisterController'

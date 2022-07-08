@@ -1,6 +1,6 @@
 import { Controller, Middleware } from '@/presentation/api/protocols'
 import {
-  ValidationRegisterController
+  RegisterController
 } from '@/presentation/api/controllers'
 import { RequestHandler, Router } from 'express'
 
@@ -13,7 +13,7 @@ export class ExpressRouter {
     this.router = Router()
     this.router.get('/v1/partner/health', healthCheck)
 
-    this.router.post('/v1/onboard', this.adaptController(new ValidationRegisterController()))
+    this.router.post('/v1/onboard', this.adaptController(new RegisterController()))
   }
 
   private readonly adaptController = (controller: Controller): RequestHandler => {
